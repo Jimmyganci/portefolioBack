@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000;
 app.use(express.json());
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://jimmyganci.github.io/",
   credentials: true, // access-control-allow-credentials:true
   optionSuccessStatus: 200,
   maxAge: 3600,
