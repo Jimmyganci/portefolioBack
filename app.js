@@ -26,29 +26,29 @@ app.post("/send", (req, res) => {
         pass: process.env.PWD_GMAIL,
       },
     });
-    res.status(200).json(transporter);
-  } catch (err) {
-    res.status(404).send(err);
-  }
 
-  const mailOptions = {
-    from: "myPortefolio",
-    to: "jimmy.ganci@gmail.com",
-    subject: subject,
-    text: `Vous avez reçu un mail de: ${email}!
+    const mailOptions = {
+      from: "myPortefolio",
+      to: "jimmy.ganci@gmail.com",
+      subject: subject,
+      text: `Vous avez reçu un mail de: ${email}!
 	Prénom:${firstname}
 	Nom:${lastname}
 	Sujet:${subject}
 	Message: ${text}`,
-  };
+    };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+    res.status(200).send(transporter);
+  } catch (err) {
+    res.status(404).send(err);
+  }
 });
 
 app.listen(port, () => {
