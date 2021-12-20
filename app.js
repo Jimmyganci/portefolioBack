@@ -17,15 +17,19 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.post("/send", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
   const { firstname, lastname, email, subject, text } = req.body;
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "jimmy.ganci@gmail.com",
-      pass: process.env.PWD_GMAIL,
-    },
-  });
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "jimmy.ganci@gmail.com",
+        pass: process.env.PWD_GMAIL,
+      },
+    });
+    res.status(200).json(transporter);
+  } catch (err) {
+    res.status(404).send(err);
+  }
 
   const mailOptions = {
     from: "myPortefolio",
