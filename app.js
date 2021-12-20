@@ -45,7 +45,7 @@ app.post("/send", (req, res) => {
         console.log("Email sent: " + info.response);
       }
     });
-    res.status(200).send(transporter);
+    res.status(200).send();
   } catch (err) {
     res.status(404).send(err);
   }
