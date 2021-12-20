@@ -16,6 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.post("/send", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   const { firstname, lastname, email, subject, text } = req.body;
   const transporter = nodemailer.createTransport({
     service: "gmail",
